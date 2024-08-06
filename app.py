@@ -80,7 +80,7 @@ def get_color_hex(color_name):
     try:
         color_hex = mcolors.CSS4_COLORS[color_name.lower()]
     except KeyError:
-        color_hex = '#000000' 
+        color_hex = '#000000'  # Default to black if color is not found
     return color_hex
 
 def generate_color_table(color_distribution):
@@ -88,7 +88,7 @@ def generate_color_table(color_distribution):
     table_html += '<tr><th>Color</th><th>Percentage</th></tr>'
     
     for color, percentage in color_distribution.items():
-        if color.lower() != 'black':
+        if color.lower() != 'white':
             color_hex = get_color_hex(color)
             table_html += f'<tr><td style="color: {color_hex};">{color}</td><td>{percentage:.2f}%</td></tr>'
         else:
