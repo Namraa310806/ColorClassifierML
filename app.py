@@ -7,7 +7,9 @@ from matplotlib import colors as mcolors
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
+
+
 
 # ColorClassifier class and functions
 class ColorClassifier:
@@ -21,11 +23,27 @@ class ColorClassifier:
         self.features = []
         self.labels = []
 
+
+
     def extract_color_histogram(self, image):
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         hist = cv2.calcHist([hsv], [0, 1, 2], None, self.bins, [0, 180, 0, 256, 0, 256])
         cv2.normalize(hist, hist)
         return hist.flatten()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     def load_data(self):
         for color in self.color_folders:
@@ -52,7 +70,12 @@ class ColorClassifier:
         self.clf.fit(X_train, y_train)
         y_pred = self.clf.predict(X_test)
         print('Accuracy:', accuracy_score(y_test, y_pred))
+        print('Confusion Matrix:')
+        print(confusion_matrix(y_test,y_pred))
+        print("Classification Report: ")
+        print(classification_report(y_test,y_pred))
 
+    
     def predict_color_distribution(self, image_path):
         image = cv2.imread(image_path)
         if image is None:
@@ -83,6 +106,11 @@ def get_color_hex(color_name):
         color_hex = '#000000'  # Default to black if color is not found
     return color_hex
 
+
+
+
+
+
 def generate_color_table(color_distribution):
     table_html = '<table style="width:100%; border-collapse: collapse;">'
     table_html += '<tr><th>Color</th><th>Percentage</th></tr>'
@@ -96,6 +124,26 @@ def generate_color_table(color_distribution):
     
     table_html += '</table>'
     return table_html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def main():
     st.title("Color Classifier")
