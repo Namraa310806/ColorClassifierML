@@ -13,10 +13,17 @@ A sophisticated color analysis tool that uses machine learning to identify and a
 
 ## 📸 Screenshots
 
-The application interface can be found in the `screenshots` folder:
-- `main_interface.png`: Main application interface
-- `color_analysis.png`: Example of color analysis results
-- `upload_example.png`: Image upload and processing example
+### Main Interface
+![Main Interface](screenshots/main_interface.png)
+*The main interface of NP's Color Classifier showing the upload section and welcome message*
+
+### Color Analysis Results
+![Color Analysis](screenshots/color_analysis.png)
+*Example of color analysis results showing the distribution of colors in an uploaded image*
+
+### Upload Process
+![Upload Example](screenshots/upload_example.png)
+*Demonstration of the image upload process and real-time analysis*
 
 ## 🛠️ Technical Details
 
