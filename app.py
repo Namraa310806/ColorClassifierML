@@ -35,16 +35,6 @@ class ColorClassifier:
 
 
 
-
-
-
-
-
-
-
-
-
-
     def load_data(self):
         for color in self.color_folders:
             color_folder_path = os.path.join(self.dataset_path, color)
@@ -129,33 +119,18 @@ def generate_color_table(color_distribution):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def main():
-    st.title("Color Classifier")
-    st.write("Upload an image and see the color distribution.")
+    st.markdown("""
+        <h1 style='text-align: center; color: #6a1b9a;'>🎨 NP's Color Classifier 🎨</h1>
+        <p style='text-align: center; font-size:18px;'>Upload an image and see the color distribution</p>
+        <hr style='border:1px solid #ccc;'>
+    """, unsafe_allow_html=True)
 
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
     
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
         st.image(image, caption='Uploaded Image', use_column_width=True)
-        st.write("")
-        # st.write("Classifying...")
 
         # Save the uploaded file to disk
         uploaded_file_path = os.path.join("uploads", uploaded_file.name)
@@ -168,6 +143,7 @@ def main():
         # Generate and display the color table
         color_table_html = generate_color_table(color_distribution)
         st.markdown(color_table_html, unsafe_allow_html=True)
+
 
 if __name__ == "__main__":
     os.makedirs('uploads', exist_ok=True)
